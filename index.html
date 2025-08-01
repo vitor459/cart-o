@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cartão Interativo</title>
+    <style>
+        body {
+            background-color: #333;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+        }
+
+        .card-container {
+            perspective: 1000px; /* Define a perspectiva para animação 3D */
+        }
+
+        .card {
+            width: 300px;
+            height: 200px;
+            background-color: #28a745; /* Verde de alerta */
+            color: white;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+            transform-style: preserve-3d;
+            transition: transform 0.6s;
+            cursor: pointer;
+        }
+
+        .card:hover {
+            transform: rotateY(180deg); /* Gira o cartão ao passar o mouse */
+        }
+
+        .card-front, .card-back {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            backface-visibility: hidden;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+        }
+
+        .card-front {
+            background-color: #28a745; /* Verde */
+            text-align: center;
+        }
+
+        .card-back {
+            background-color: white;
+            color: black;
+            transform: rotateY(180deg);
+            text-align: center;
+        }
+
+        h1, p {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            font-size: 18px;
+        }
+
+        .card:hover .card-front {
+            animation: flip 0.6s forwards;
+        }
+
+        /* Animação de virar o cartão */
+        @keyframes flip {
+            0% {
+                opacity: 1;
+            }
+            100% {
+                opacity: 0;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="card-container">
+        <div class="card" onclick="flipCard()">
+            <div class="card-front">
+                <h1>O que é programar em Java?</h1>
+            </div>
+            <div class="card-back">
+                <p>Programar em Java significa escrever código para criar aplicativos, jogos, sistemas e muito mais usando a linguagem de programação Java. É uma das linguagens mais populares devido à sua portabilidade, robustez e segurança.</p>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        function flipCard() {
+            const card = document.querySelector('.card');
+            card.classList.toggle('flipped');
+        }
+    </script>
+    
+</body>
+</html>
